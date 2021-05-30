@@ -25,10 +25,43 @@ class ListComp extends PureComponent {
     });
   }
 
+  deleteMahasiswa = (idmahasiswa) => {
+    const { mahasiswa } = this.state;
+    const data = qs.stringify({
+      id_mahasiswa: idmahasiswa,
+    });
+
+    axios
+      .delete(api + "/hapus", {
+        data: data,
+        headers: { "Content-type": "application/x-www-form-urlencoded" },
+      })
+      .then((json) => {
+        if (json.data.status === 200) {
+          this.setState({
+            response: json.data.values,
+            mahasiswa: mahasiswa.filter(
+              (mahasiswa) => mahasiswa.id_mahasiswa !== idmahasiswa
+            ),
+            display: "block",
+          });
+          this.props.history.push("/mahasiswa");
+        } else {
+          this.setState({
+            response: json.data.values,
+            display: "block",
+          });
+        }
+      });
+  };
+
   render() {
     return (
       <Container>
         <h2>Data Mahasiswa</h2>
+        <Alert color="success" style={{ display: this.state.display }}>
+          {this.state.response}
+        </Alert>
         <NavLink href="/mahasiswa/tambah">
           <Button color="success">Tambah Data</Button>
         </NavLink>
@@ -60,6 +93,13 @@ class ListComp extends PureComponent {
                   >
                     <Button>Edit</Button>
                   </Link>
+                  <span> </span>
+                  <Button
+                    color="danger"
+                    onClick={() => this.deleteMahasiswa(mahasiswa.id_mahasiswa)}
+                  >
+                    Hapus
+                  </Button>
                 </td>
               </tr>
             ))}
