@@ -33,6 +33,12 @@ function NavbarComp(props) {
             <NavItem>
               <NavLink href="/mahasiswa">Mahasiswa</NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink href="/kelas">Class</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/hooks">Hooks</NavLink>
+            </NavItem>
           </Nav>
           <NavbarText className="simple-text">Simple Text</NavbarText>
         </Collapse>
