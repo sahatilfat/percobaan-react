@@ -1,18 +1,37 @@
 import React, { useState } from "react";
+import TambahComp from "../../Class/TambahComp";
+import TampilComp from "./TampilComp";
 
 const HooksComp = () => {
-  const [jumlah, setJumlah] = useState(0);
+  const [jumlah, tambahJumlah] = useState(0);
 
-  const tambahProduk = () => {
-    setJumlah(jumlah + 1);
+  const tambahBilangan = () => {
+    tambahJumlah(jumlah + 1);
   };
 
-  return (
-    <div>
-      <h1>{jumlah}</h1>
-      <button onClick={tambahProduk}>Tambah Produk</button>
-    </div>
-  );
+  // login
+  const [dataLogin, setDataLogin] = useState({
+    username: "firda",
+    token: "123abcd",
+    isLogin: true,
+  });
+
+  // cek kondisi sudah login / belum
+  let tampil;
+
+  if (dataLogin.isLogin) {
+    tampil = (
+      <TampilComp
+        username={dataLogin.username}
+        fungsi={tambahBilangan}
+        jumlah={jumlah}
+      />
+    );
+  } else {
+    tampil = <TampilComp username="maaf anda belum login" disabled={true} />;
+  }
+
+  return <div>{tampil}</div>;
 };
 
 export default HooksComp;
