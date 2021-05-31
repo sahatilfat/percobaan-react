@@ -8,6 +8,7 @@ import DetailComp from "./Components/DetailComp";
 import HomePage from "./Components/HomePage";
 import KelasComp from "./Components/Hooks/Class/KelasComp";
 import HooksComp from "./Components/Hooks/Functional/HooksComp";
+import HooksUseEffects from "./Components/Hooks/Functional/HooksUseEffects";
 import NavbarComp from "./Components/NavbarComp";
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
           <Route exact path="/detail/:id" component={DetailComp} />
           <Route exact path="/kelas" component={KelasComp} />
           <Route exact path="/hooks" component={HooksComp} />
+          <Route exact path="/useeffects" component={HooksUseEffects} />
         </Switch>
       </BrowserRouter>
     </div>
