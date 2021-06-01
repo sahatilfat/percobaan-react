@@ -12,14 +12,28 @@ import {
   Button,
 } from "reactstrap";
 
-const initialState = 0;
+const initialState = {
+  jumlah: 1,
+  hargasatuan: 10000,
+  hargatotal: 10000,
+};
 
 const reducer = (state, action) => {
-  switch (action) {
+  switch (action.type) {
     case "tambah":
-      return state + 1;
+      return {
+        ...state,
+        jumlah: state.jumlah + 1,
+        hargatotal: state.hargasatuan * state.jumlah + state.hargasatuan,
+      };
     case "kurang":
-      return state - 1;
+      if (state.jumlah > 0) {
+        return {
+          ...state,
+          jumlah: state.jumlah - 1,
+          hargatotal: state.hargatotal - state.hargasatuan,
+        };
+      }
     default:
       return state;
   }
@@ -41,20 +55,27 @@ function HooksReducer() {
           <Col xs="6">
             <h3>Action Figure Naruto</h3>
             <p>Harga</p>
-            <h3>Rp. 157.000</h3>
+            <h3>Rp. {count.hargasatuan}</h3>
             <Row>
               <Col>
-                <Button color="danger" onClick={() => dispatch("tambah")}>
+                <Button
+                  color="danger"
+                  onClick={() => dispatch({ type: "tambah" })}
+                >
                   +
                 </Button>
               </Col>
               <Col>
-                <h4>{count}</h4>
+                <h4>{count.jumlah}</h4>
               </Col>
               <Col>
-                <Button onClick={() => dispatch("kurang")}>-</Button>
+                <Button onClick={() => dispatch({ type: "kurang" })}>-</Button>
               </Col>
             </Row>
+            <br />
+            <Button color="success" size="lg">
+              Total Rp.{count.hargatotal}
+            </Button>
           </Col>
         </Row>
       </Container>
