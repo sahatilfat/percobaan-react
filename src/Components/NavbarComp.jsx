@@ -63,6 +63,11 @@ function NavbarComp(props) {
                 Produk
               </NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink to="/reducer" className="nav-link">
+                Reducer
+              </NavLink>
+            </NavItem>
           </Nav>
           <NavbarText>
             <Button color="danger">{value}</Button>

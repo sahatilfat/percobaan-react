@@ -9,6 +9,7 @@ import DetailComp from "./Components/DetailComp";
 import HomePage from "./Components/HomePage";
 import KelasComp from "./Components/Hooks/Class/KelasComp";
 import HooksComp from "./Components/Hooks/Functional/HooksComp";
+import HooksReducer from "./Components/Hooks/Functional/HooksReducer";
 import HooksUseEffects from "./Components/Hooks/Functional/HooksUseEffects";
 import ProductComp from "./Components/Hooks/Functional/ProductComp";
 import NavbarComp from "./Components/NavbarComp";
@@ -32,6 +33,7 @@ const App = () => {
             <Route exact path="/hooks" component={HooksComp} />
             <Route exact path="/useeffects" component={HooksUseEffects} />
             <Route exact path="/produk" component={ProductComp} />
+            <Route exact path="/reducer" component={HooksReducer} />
           </Switch>
         </CartContext.Provider>
       </BrowserRouter>
